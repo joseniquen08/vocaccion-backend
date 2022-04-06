@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import * as yup from "yup";
-import { ApplicationError } from "../../../../shared/errors/ApplicationError";
+import { ApplicationError } from "../../shared/errors/ApplicationError";
 
-export const signUpUserSchema = yup.object({
+export const signUpSchema = yup.object({
   body: yup.object({
     username: yup.string().strict().lowercase('Lowercase').trim('Error trim').required('Username is required'),
     first_name: yup.string().strict().trim('Error trim').required('First name is required'),
@@ -14,14 +14,14 @@ export const signUpUserSchema = yup.object({
   })
 });
 
-export const signInUserSchema = yup.object({
+export const signInSchema = yup.object({
   body: yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup.string().min(8, 'Min length is 8').required('Password is required')
   })
 });
 
-export const userRequestValidator = (Schema: any) => async (req: Request, _res: Response, next: NextFunction) => {
+export const authRequestValidator = (Schema: any) => async (req: Request, _res: Response, next: NextFunction) => {
   try {
     await Schema.validate({ body: req.body });
     next();
