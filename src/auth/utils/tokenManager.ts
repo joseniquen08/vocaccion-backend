@@ -13,4 +13,4 @@ export const generateRefreshToken = (payload: {}): string => jwt.sign(payload, t
 
 export const validateToken = (token: string) => jwt.verify(token, tokenConfig.secret);
 
-export const validateRefreshToken = (token: string) => <jwt.UserIDJwtPayload>(jwt.verify(token, tokenConfig.refresh_secret));
+export const validateRefreshToken = (token: string) => <jwt.UserIdJwtPayload>(jwt.verify(token, tokenConfig.refresh_secret));
