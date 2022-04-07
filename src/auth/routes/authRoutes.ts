@@ -5,6 +5,6 @@ import { authRequestValidator, signInSchema, signUpSchema } from "../middlewares
 const router: Router = Router();
 
 router.post('/signup', authRequestValidator(signUpSchema), signUpController);
-router.get('/signin', authRequestValidator(signInSchema), signInController);
+router.post('/signin', authRequestValidator(signInSchema), signInController);
 
 export default router;
